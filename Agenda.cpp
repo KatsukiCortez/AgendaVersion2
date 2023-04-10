@@ -675,7 +675,7 @@ Menu:									/*Etiqueta para retornar al Menu*/
 				Contactos[ContactosRegistrados].Telefono = "+51 223311";
 				Contactos[ContactosRegistrados].Celular = "+51 951874236";
 				Contactos[ContactosRegistrados].Email = "vilmagrava@gmail.com";
-				Contactos[ContactosRegistrados].Fecha.Nacimiento = "06/04/1996"; 
+				Contactos[ContactosRegistrados].Fecha.Nacimiento = "06/04/1996";
 				ContactosRegistrados++;
 
 				/*Cuarto contacto*/
