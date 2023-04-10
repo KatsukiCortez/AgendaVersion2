@@ -1,12 +1,12 @@
 /*****************************
- Librer�as utilizadas
+ Librerias utilizadas
 *****************************/
 #include <iostream>					/*Flujo de entrada y salida de datos*/
 #include <string.h>					/*Funciones de manejo de cadenas*/
 #include <windows.h>				/*Permite usar comandos de Windows Console*/
 #include <stdio.h>
 
-#define CANTIDAD 500 				/*Cantidad m�xima de contactos: 500*/
+#define CANTIDAD 500 				/*Cantidad maxima de contactos: 500*/
 
 using namespace std;
 
@@ -50,11 +50,11 @@ void Insertar(struct Agenda Contactos[]);			/*Inserta contactos en la agenda*/
 
 /*Relevante e importante*/
 void Buscar(struct Agenda Contactos[]);				/*Busca contactos en la agenda*/
-int BuscarMenuCategoria();							/*Se muestra un men� para buscar por categor�as*/
-void BuscarPorNombre(struct Agenda Contactos[]);	/*Aplica una b�squeda por nombre de contacto*/
-void BuscarPorTelefono(struct Agenda Contactos[]);	/*Aplica una b�squeda por tel�fono de contacto*/
-void BuscarPorCelular(struct Agenda Contactos[]);	/*Aplica una b�squeda por celular de contacto*/
-void BuscarPorEmail(struct Agenda Contactos[]);		/*Aplica una b�squeda por email de contacto*/
+int BuscarMenuCategoria();							/*Se muestra un menu para buscar por categor�as*/
+void BuscarPorNombre(struct Agenda Contactos[]);	/*Aplica una busqueda por nombre de contacto*/
+void BuscarPorTelefono(struct Agenda Contactos[]);	/*Aplica una busqueda por telefono de contacto*/
+void BuscarPorCelular(struct Agenda Contactos[]);	/*Aplica una busqueda por celular de contacto*/
+void BuscarPorEmail(struct Agenda Contactos[]);		/*Aplica una busqueda por email de contacto*/
 
 /*Relevante e importante*/
 void Listar(struct Agenda Contactos[]);				/*Lista todos los contactos existentes*/
@@ -78,10 +78,10 @@ bool HayContactos(struct Agenda Contactos[]);		/*Verifica si hay contactos en la
 /*****************************
 	FUNCIONES SECUNDARIAS
 *****************************/
-void Detenerse();									/*Detiene la ejecuci?n, hasta que se presione una tecla*/
-void LimpiarPantalla();								/*Limpia la pantalla para mostrar un nuevo Men�*/
+void Detenerse();									/*Detiene la ejecucion, hasta que se presione una tecla*/
+void LimpiarPantalla();								/*Limpia la pantalla para mostrar un nuevo Menu*/
 void Dormir(int);									/*Aplica un retraso temporal*/
-int Salir();										/*Centinela que pregunta por la salida de los Men�es*/
+int Salir();										/*Centinela que pregunta por la salida de los Menoes*/
 
 /*****************************
  DEFINICI?N DEL CONSTRUCTOR
@@ -104,7 +104,7 @@ int main(int argc, char *argv[]) {
 	int x;											/*Almacena las opciones seleccionadas*/
 	int salir = 0;                                  /*bandera para salir*/
 	Agenda Contactos[CANTIDAD]; 					/*Definici?n de la variable Contactos con la cantidad*/
-	CargarContactos(Contactos);						/*Men� para cargar datos o iniciar una nueva agenda*/
+	CargarContactos(Contactos);						/*Menu para cargar datos o iniciar una nueva agenda*/
 	
 	do{											/*Etiqueta para retornar al Menu recursivamente*/
 		if (HayContactos(Contactos)){				/*Verifica si no hay contactos*/
@@ -160,7 +160,7 @@ int main(int argc, char *argv[]) {
 }
 
 int MenuPrimario(){
-	char x;										/*Sirve para almacenar la respuesta (opci?n)*/
+	int x;										/*Sirve para almacenar la respuesta (opci?n)*/
 	
 	LimpiarPantalla();
 	
@@ -206,9 +206,9 @@ int MenuSecundario(){
 
 void Insertar(struct Agenda Contactos[]){
 	int x;
-	int salir =0;						/*bandera para salir*/
+	int salir = 0;						/*bandera para salir*/
 	
-	do{ 									/*Etiqueta de Men� para insertar contactos*/
+	do{ 									/*Etiqueta de Menu para insertar contactos*/
 		
 		/*Se verifica si hay espacio en la agenda*/
 		if (ContactosRegistrados < CANTIDAD){
@@ -273,11 +273,11 @@ void Insertar(struct Agenda Contactos[]){
 					// volvemos a InsertarMenu
 					break;
 				case 2:
-					Detenerse();
+					salir = 1;
 					break;
 				default:
 					cout << "Up's, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
-					Detenerse();
+					salir = 1;
 					break;
 			}
 			
