@@ -50,7 +50,7 @@ void Insertar(struct Agenda Contactos[]);			/*Inserta contactos en la agenda*/
 
 /*Relevante e importante*/
 void Buscar(struct Agenda Contactos[]);				/*Busca contactos en la agenda*/
-int BuscarMenuCategoria();							/*Se muestra un menu para buscar por categor�as*/
+int BuscarMenuCategoria();							/*Se muestra un menu para buscar por categorias*/
 void BuscarPorNombre(struct Agenda Contactos[]);	/*Aplica una busqueda por nombre de contacto*/
 void BuscarPorTelefono(struct Agenda Contactos[]);	/*Aplica una busqueda por telefono de contacto*/
 void BuscarPorCelular(struct Agenda Contactos[]);	/*Aplica una busqueda por celular de contacto*/
@@ -99,61 +99,11 @@ Agenda::Agenda() {
 /*****************************
 	  FUNCIÓN PRINCIPAL
 *****************************/
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
 	setlocale(LC_CTYPE, "spanish");
 	int x;											/*Almacena las opciones seleccionadas*/
 	int salir = 0;                                  /*bandera para salir*/
-	Agenda Contactos[CANTIDAD]; 					/*Definici?n de la variable Contactos con la cantidad*/
-<<<<<<< HEAD
-	CargarContactos(Contactos);						/*Men� para cargar datos o iniciar una nueva agenda*/
-
-Menu:									/*Etiqueta para retornar al Menu*/
-	if (HayContactos(Contactos)) {				/*Verifica si no hay contactos*/
-		ContactosRegistrados = 0;
-		ContactosEliminados = 0;
-		/*No hay contactos*/
-		do {
-			x = MenuPrimario();					/*Primer Men� donde la agenda est? vac?a*/
-		} while (x < 1 || x > 2);
-
-		switch (x) {								/*En este Men� se validan 2 opciones (Insertar, Salir)*/
-		case 1:
-			Insertar(Contactos);			/*Men� para insertar datos*/
-			break;
-		case 2:
-			salir = Salir();				/*Centinela para Salir*/
-			break;
-		default:
-			cout << "Up's, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
-			system("PAUSE>NUL");
-			break;
-		}
-
-	}
-	else {
-		/*Si hay contactos*/
-		do {
-			x = MenuSecundario();				/*Segundo Men� donde la agenda contiene contactos*/
-		} while (x < 1 || x > 4);
-
-		switch (x) {								/*Este Men� contiene m�s opciones (Insertar, buscar, listar)*/
-		case 1:
-			Insertar(Contactos);
-			break;
-		case 2:
-			Buscar(Contactos);				/*Men� para realizar una b�squeda de contactos por categor?as*/
-			break;
-		case 3:
-			Listar(Contactos);				/*Listar todos los contactos existentes de manera interactiva*/
-			break;
-		case 4:
-			salir = Salir();				/*Centinela para Salir*/
-			break;
-		default:
-			cout << "Up's, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
-			system("PAUSE>NUL");
-			break;
-=======
+	Agenda Contactos[CANTIDAD]; 					/*Definicion de la variable Contactos con la cantidad*/
 	CargarContactos(Contactos);						/*Menu para cargar datos o iniciar una nueva agenda*/
 	
 	do{											/*Etiqueta para retornar al Menu recursivamente*/
@@ -162,18 +112,18 @@ Menu:									/*Etiqueta para retornar al Menu*/
 			ContactosEliminados  = 0;
 			/*No hay contactos*/
 			do {
-				x = MenuPrimario();					/*Primer Men� donde la agenda est? vac?a*/
+				x = MenuPrimario();					/*Primer Menu donde la agenda est? vac?a*/
 			} while(x < 1 || x > 2);
 			
-			switch (x){								/*En este Men� se validan 2 opciones (Insertar, Salir)*/
+			switch (x){								/*En este Menu se validan 2 opciones (Insertar, Salir)*/
 				case 1: 
-					Insertar(Contactos);			/*Men� para insertar datos*/
+					Insertar(Contactos);			/*Menu para insertar datos*/
 					break;
 				case 2:
 					salir = Salir();				/*Centinela para Salir*/
 					break;
 				default:
-					cout << "Up's, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
+					cout << "Ups, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
 					system("PAUSE>NUL");
 					break;
 			}
@@ -181,15 +131,15 @@ Menu:									/*Etiqueta para retornar al Menu*/
 		} else {
 			/*Si hay contactos*/
 			do {
-				x = MenuSecundario();				/*Segundo Men� donde la agenda contiene contactos*/
+				x = MenuSecundario();				/*Segundo Menu donde la agenda contiene contactos*/
 			} while(x < 1 || x > 4);
 			
-			switch (x){								/*Este Men� contiene m�s opciones (Insertar, buscar, listar)*/
+			switch (x){								/*Este Menu contiene mas opciones (Insertar, buscar, listar)*/
 				case 1: 
 					Insertar(Contactos);
 					break;
 				case 2:
-					Buscar(Contactos);				/*Men� para realizar una b�squeda de contactos por categor?as*/
+					Buscar(Contactos);				/*Menu para realizar una busqueda de contactos por categorias*/
 					break;
 				case 3: 
 					Listar(Contactos);				/*Listar todos los contactos existentes de manera interactiva*/
@@ -198,22 +148,19 @@ Menu:									/*Etiqueta para retornar al Menu*/
 					salir = Salir();				/*Centinela para Salir*/
 					break;
 				default:
-					cout << "Up's, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
+					cout << "Ups, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
 					system("PAUSE>NUL");
 					break;
 			}
->>>>>>> 2f75ff4004d9c4ae0d353b41e68a9bd4ac67e3e9
 		}
 	}
-}
-}
-goto Menu;											/*Sentencia para regresar a continuidad de etiqueta menu*/
-Finish:
+	while (salir == 0);						/*Se retorna al Menu principal en caso de que no haya seleccionado Salir*/
+	
 	return 0;
 }
 
 int MenuPrimario(){
-	int x;										/*Sirve para almacenar la respuesta (opci?n)*/
+	int x;										/*Sirve para almacenar la respuesta (opcion)*/
 	
 	LimpiarPantalla();
 	
@@ -232,7 +179,7 @@ int MenuPrimario(){
 	cout << "Esperando respuesta: ";
 	cin >> x;
 	
-	return x;									/*Convierte y retorna la opci?n seleccionada*/
+	return x;									/*Convierte y retorna la opcion seleccionada*/
 }
 
 int MenuSecundario(){
@@ -241,11 +188,11 @@ int MenuSecundario(){
 	LimpiarPantalla();
 	
 	cout << Regla << endl;
-	cout << "|\tBienvenido a tu Agenda Electr?nica (Contactos)\t    |" << endl;
+	cout << "|\tBienvenido a tu Agenda Electronica (Contactos)\t    |" << endl;
 	cout << Regla << endl;
 	
 	cout << "|\t\t\t\t\t\t\t    |" << endl;
-	cout << "|\t\t      S? hay contactos" << " (" << (ContactosRegistrados - ContactosEliminados) << ")\t\t    |" << endl;
+	cout << "|\t\t      Si hay contactos" << " (" << (ContactosRegistrados - ContactosEliminados) << ")\t\t    |" << endl;
 	cout << "|\t\t\t\t\t\t\t    |" << endl;
 		
 	cout << Regla << endl;
@@ -257,23 +204,15 @@ int MenuSecundario(){
 	return x;
 }
 
-void Insertar(struct Agenda Contactos[]) {
+void Insertar(struct Agenda Contactos[]){
 	int x;
-<<<<<<< HEAD
-InsertarMenu: 									/*Etiqueta de Menu para insertar contactos*/
-	/*Se verifica si hay espacio en la agenda*/
-	if (ContactosRegistrados < CANTIDAD) {
-		cout << "\n\tN?mero de contacto: " << (ContactosRegistrados + 1) << endl;
-		cout << "\tNombre:   ";
-		cin >> Contactos[ContactosRegistrados].Nombre;
-=======
 	int salir = 0;						/*bandera para salir*/
 	
 	do{ 									/*Etiqueta de Menu para insertar contactos*/
 		
 		/*Se verifica si hay espacio en la agenda*/
 		if (ContactosRegistrados < CANTIDAD){
-			cout << "\n\tN?mero de contacto: " << (ContactosRegistrados + 1) << endl;
+			cout << "\n\tNumero de contacto: " << (ContactosRegistrados + 1) << endl;
 			cout << "\tNombre:   ";
 			cin >>  Contactos[ContactosRegistrados].Nombre;
 			
@@ -285,8 +224,8 @@ InsertarMenu: 									/*Etiqueta de Menu para insertar contactos*/
 				
 				/*Si existe se intenta ingresar otro*/
 				do {
-					cout << "\n\t?Desea agregar otro contacto?" << endl;
-					cout << "\t(1) S?, (2) No: ";
+					cout << "\n\t¿Desea agregar otro contacto?" << endl;
+					cout << "\t(1) Si, (2) No: ";
 					cin >> x;
 					
 				} while(x < 1 || x > 2);
@@ -299,13 +238,13 @@ InsertarMenu: 									/*Etiqueta de Menu para insertar contactos*/
 						Detenerse();
 						break;
 					default:
-						cout << "Up's, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
+						cout << "Ups, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
 						Detenerse();
 						break;
 				}
 			}
 			
-			cout << "\tTel?fono: ";									
+			cout << "\tTelefono: ";									
 			cin >>  Contactos[ContactosRegistrados].Telefono;	/*Agregando valor a atributo Telefono*/
 			
 			cout << "\tCelular:  ";
@@ -319,7 +258,7 @@ InsertarMenu: 									/*Etiqueta de Menu para insertar contactos*/
 			
 			ContactosRegistrados++;									/*Se incrementa la variable, indicando nuevo contacto*/
 			
-			cout << "\n\t?Agregado con ?xito!" << endl << endl;
+			cout << "\n\t¿Agregado con Exito!" << endl << endl;
 			
 		
 			do {
@@ -337,71 +276,17 @@ InsertarMenu: 									/*Etiqueta de Menu para insertar contactos*/
 					salir = 1;
 					break;
 				default:
-					cout << "Up's, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
+					cout << "Ups, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
 					salir = 1;
 					break;
 			}
 			
 		} else {
-			cout << "Lleg? al l?mite de contactos permitidos en la agenda." << endl << endl;
+			cout << "Llego al limite de contactos permitidos en la agenda." << endl << endl;
 		}
 	}
 	while(salir == 0);
->>>>>>> 2f75ff4004d9c4ae0d353b41e68a9bd4ac67e3e9
 
-		/*Se verifica si el contacto que est? intentando insertar, existe en la agenda*/
-		if (VerificarContacto(Contactos, Contactos[ContactosRegistrados].Nombre)) {
-			cout << "\n\tEl contacto \"" << Contactos[ContactosRegistrados].Nombre << "\" ya existe!" << endl;
-
-			Contactos[ContactosRegistrados].Nombre = " ";
-
-			/*Si existe se intenta ingresar otro*/
-			goto InsertarContacto;							/*Vamos a etiqueta de insertar contacto*/
-		}
-
-		cout << "\tTel?fono: ";
-		cin >> Contactos[ContactosRegistrados].Telefono;	/*Agregando valor a atributo Telefono*/
-
-		cout << "\tCelular:  ";
-		cin >> Contactos[ContactosRegistrados].Celular;	/*Agregando valor a atributo Celular*/
-
-		cout << "\tEmail:    ";
-		cin >> Contactos[ContactosRegistrados].Email;	/*Agregando valor a atributo Email*/
-
-		cout << "\tFecha de Nacimiento (DD/MM/AAAA): ";
-		cin >> Contactos[ContactosRegistrados].Fecha.Nacimiento;	/*Agregando valor a atributo de Fecha*/
-
-		ContactosRegistrados++;									/*Se incrementa la variable, indicando nuevo contacto*/
-
-		cout << "\n\t?Agregado con ?xito!" << endl << endl;
-
-	InsertarContacto:
-		do {
-			cout << "\n\t?Desea agregar otro contacto?" << endl;
-			cout << "\t(1) S?, (2) No: ";
-			cin >> x;
-
-		} while (x < 1 || x > 2);
-
-		switch (x) {
-		case 1:
-			// volvemos a InsertarMenu
-			break;
-		case 2:
-			goto InsertarFinal;
-			break;
-		default:
-			cout << "Up's, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
-			Detenerse();
-			break;
-		}
-
-	}
-	else {
-		cout << "Llegó al l?mite de contactos permitidos en la agenda." << endl << endl;
-	}
-}
-InsertarFinal:														/*Finalizar la inserción*/
 	Detenerse();
 	return;
 }
@@ -410,11 +295,11 @@ void Buscar(struct Agenda Contactos[]){
 	int x;
 	int salir = 0;                                      /*bandera para salir*/
 	
-BuscarMenu:
+	do{ 
 		LimpiarPantalla();
 	
 		do {
-			x = BuscarMenuCategoria();				/*Men� para buscar contactos por categor?as*/
+			x = BuscarMenuCategoria();				/*Menu para buscar contactos por categor?as*/
 		} while(x < 1 || x > 5);
 		
 		switch (x){
@@ -431,16 +316,17 @@ BuscarMenu:
 				BuscarPorEmail(Contactos);			/*Buscar por email*/
 				break;
 			case 5:
-				if (Salir() == 1) {
-					goto BuscarFinal;
-				}
-					break;
+				salir = Salir();
+				break;
 			default:
-				cout << "Up's, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
+				cout << "Ups, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
 				system("PAUSE>NUL");
 				break;
 		}
-BuscarFinal:
+	
+	}
+	while(salir == 0);
+
 	Detenerse();
 	return;
 }
@@ -448,8 +334,8 @@ BuscarFinal:
 int BuscarMenuCategoria(){
 	int x; 
 	
-	cout << endl << "\n\t\t     Realizar b�squeda por:" << endl << endl;
-	cout << "(1)Nombre | (2)Tel?fono | (3)Celular | (4)Email | (5)Volver" << endl;
+	cout << endl << "\n\t\t     Realizar busqueda por:" << endl << endl;
+	cout << "(1)Nombre | (2)Telefono | (3)Celular | (4)Email | (5)Volver" << endl;
 	cout << Regla << endl;
 	
 	cout << "Esperando respuesta: ";
@@ -472,7 +358,7 @@ void BuscarPorNombre(struct Agenda Contactos[]){
 	/*Recorrer la cantidad de contactos registrados en la agenda*/
 	for (i=0; i < ContactosRegistrados; i++){
 		if ((Contactos[i].Nombre == PorNombre) ==0){				/*Si lo encuentra*/
-			Imprimir(Contactos, i);							/*Muestra la informaci?n del contacto*/
+			Imprimir(Contactos, i);							/*Muestra la informacion del contacto*/
 			c++;
 			break;
 		}
@@ -491,7 +377,7 @@ void BuscarPorTelefono(struct Agenda Contactos[]){
 	
 	string PorTelefono;
 	
-	cout << "\n\tDigite el n?mero de tel?fono: ";
+	cout << "\n\tDigite el numero de telefono: ";
 	cin >>  PorTelefono;
 	cout << endl;
 	
@@ -579,23 +465,23 @@ void Listar(struct Agenda Contactos[]){
 				Dormir(1);						/*Aplicar retraso de 1 segundo*/
 				
 				if (contactos_restantes > 1)
-					cout << "\t-- A?n quedan " << contactos_restantes << " por visualizar --" << endl;
+					cout << "\t-- Aun quedan " << contactos_restantes << " por visualizar --" << endl;
 				else if (contactos_restantes == 1)
-					cout << "\t-- S?lo queda " << contactos_restantes << " por visualizar --" << endl;
+					cout << "\t-- Solo queda " << contactos_restantes << " por visualizar --" << endl;
 				
 				Detenerse();
 				cout << endl;
 			}
 			
 			/*Impresi?n de todos los datos de los contactos resultates*/
-			cout << "\n\tN?mero de contacto: " << (x+1) << endl;
+			cout << "\n\tNumero de contacto: " << (x+1) << endl;
 			cout << "\t\tNombre:   " << Contactos[i].Nombre << endl;
-			cout << "\t\tTel?fono: " << Contactos[i].Telefono << endl;
+			cout << "\t\tTelefono: " << Contactos[i].Telefono << endl;
 			cout << "\t\tCelular:  " << Contactos[i].Celular << endl;
 			cout << "\t\tEmail:    " << Contactos[i].Email << endl;
 			cout << "\t\tFecha N.: " << Contactos[i].Fecha.Nacimiento << endl << endl;
 			
-			x++;			/*Incremento de la variable de n?mero de contacto*/
+			x++;			/*Incremento de la variable de numero de contacto*/
 		}
 	}
 	
@@ -603,7 +489,6 @@ void Listar(struct Agenda Contactos[]){
 	Detenerse();
 	return;
 }
-
 void Imprimir(struct Agenda Contactos[], int posicion){
 	int x;
 	
@@ -651,7 +536,7 @@ void Actualizar(struct Agenda Contactos[], int posicion){
 	string Nombre, Telefono, Celular, Email;			/*Declaraci?n de variables que almacenar?n una copia*/
 	int salir = 0;                                      /*bandera para salir*/
 	
-ActualizarOtroContacto:										//ActualizarOtroContacto: 
+	do { 												//ActualizarOtroContacto: 
 		
 		Nombre 	= Contactos[posicion].Nombre;
 		Telefono= Contactos[posicion].Telefono;
@@ -694,16 +579,14 @@ ActualizarOtroContacto:										//ActualizarOtroContacto:
 				cout << "   Se ha actualizado de \"" << Email << "\" a " << "\"" << Contactos[posicion].Email << "\"" << endl; 
 				break;
 			case 5: 
-				if (Salir() == 1)
-				{
-					return;
-				}
+				salir = Salir();
 			default:
 				cout << "\n\tUp's, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
 				Detenerse();
 				break;
 		}
-		goto ActualizarOtroContacto;
+	}
+	while(salir == 0);
 	
 	return;
 }
@@ -805,10 +688,10 @@ void CargarContactos(struct Agenda Contactos[]){
 			ContactosRegistrados++;
 			break;
 		case 2:
-			return;							/*Regresar a Menu secundario*/
+			return;
 		case 3: 
 			if (Salir() == 1)
-				return;						/*Salir a Menu Principal*/
+				return;
 		default:
 			cout << "\n\tUp's, ha ocurrido algo inesperado, presione una tecla para continuar!." << endl;
 			Detenerse();
@@ -828,7 +711,7 @@ bool HayContactos(struct Agenda Contactos[]){
 			c++;
 	
 	if (c > 0)
-		return false; //Está vaci�
+		return false; //Est� vaci�
 	
 	return true;
 }
@@ -851,8 +734,8 @@ int Salir(){
 	
 	/*Centinela general*/
 	do {
-		cout << "\n\¿Está seguro(a) de querer hacerlo?" << endl;
-		cout << "\t(1) Sí, (2) No: ";
+		cout << "\n\t�Est� seguro(a) de querer hacerlo?" << endl;
+		cout << "\t(1) S�, (2) No: ";
 		cin >> x;
 		
 	} while(x < 1 || x > 2);
